@@ -1,0 +1,54 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Diarry" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/bronze_200</item>
+        <item name="colorPrimaryVariant">@color/bronze_100</item>
+        <item name="colorOnPrimary">@color/lush_white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/lush_white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">#313131</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="fontFamily">@font/work_sans</item>
+    </style>
+
+    <style name="outlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/lush_white</item>
+        <item name="strokeColor">@color/bronze_300</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="rippleColor">@color/bronze_200</item>
+        <item name="fontFamily">@font/work_sans</item>
+    </style>
+
+    <style name="textIntro" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/lush_white</item>
+        <item name="fontFamily">@font/raleway_bold</item>
+    </style>
+
+    <style name="greetingText" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/lush_white</item>
+        <item name="fontFamily">@font/work_sans_medium</item>
+    </style>
+
+    <style name="titleTextRv" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/bronze_200</item>
+        <item name="fontFamily">@font/work_sans_medium</item>
+    </style>
+
+    <style name="bodyTextRv" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/lush_white</item>
+        <item name="fontFamily">@font/work_sans</item>
+    </style>
+
+</resources>
