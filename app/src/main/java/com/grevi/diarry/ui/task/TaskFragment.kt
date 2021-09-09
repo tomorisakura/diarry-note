@@ -2,21 +2,19 @@ package com.grevi.diarry.ui.task
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import com.grevi.diarry.R
 import com.grevi.diarry.databinding.FragmentTaskBinding
+import com.grevi.diarry.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class TaskFragment : Fragment() {
+@AndroidEntryPoint
+class TaskFragment : BaseFragment<FragmentTaskBinding>() {
 
-    private lateinit var binding : FragmentTaskBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentTaskBinding.inflate(inflater)
-        return binding.root
+    override fun viewBindingInflater(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentTaskBinding {
+        return FragmentTaskBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
