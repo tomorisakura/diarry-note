@@ -1,6 +1,5 @@
 package com.grevi.diarry.ui.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.grevi.diarry.presistence.entity.DiaryEntity
@@ -16,8 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DiaryViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
-    private val _allDiary = MutableStateFlow<State>(State.Data)
-    val allDiary : StateFlow<State> get() = _allDiary
+    private val _allDiary = MutableStateFlow<State<List<DiaryEntity>>>(State.Data)
+    val allDiary : StateFlow<State<List<DiaryEntity>>> get() = _allDiary
 
     init {
         getAllDiary()
@@ -57,11 +56,11 @@ class DiaryViewModel @Inject constructor(private val repository: Repository) : V
     }
 
     //only restricted data
-    sealed class State {
-        data class Loading(var msg : String = "Memuat Diary") : State()
-        data class Success(val data : List<DiaryEntity>) : State()
-        data class Error(val exception : Throwable) : State()
-        object Data : State()
+    sealed class State<out T> {
+        data class Loading(var msg : String = "Memuat Diary") : State<Nothing>()
+        data class Success<T>(val data : T) : State<T>()
+        data class Error(val exception : Throwable) : State<Nothing>()
+        object Data : State<Nothing>()
     }
 
 }

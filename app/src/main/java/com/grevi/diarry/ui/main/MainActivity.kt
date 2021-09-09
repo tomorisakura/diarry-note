@@ -1,51 +1,30 @@
 package com.grevi.diarry.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.ViewGroup
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.MaterialToolbar
 import com.grevi.diarry.R
 import com.grevi.diarry.databinding.ActivityMainBinding
+import com.grevi.diarry.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private lateinit var binding : ActivityMainBinding
-    private lateinit var navHostFragment: NavHostFragment
-    private lateinit var navController: NavController
+    override fun appBar(): AppBarLayout = getViewBinding().appBarLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        initHostFragment()
+    override fun toolBar(): MaterialToolbar = getViewBinding().toolbar
+
+    override fun initViewBinding(
+        layoutInflater: LayoutInflater
+    ): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private fun initHostFragment() = with(binding) {
-        navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.intro_fragment_container) as NavHostFragment
-        navController = navHostFragment.findNavController()
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when(destination.id) {
-                R.id.splashFragment -> setToolbarVisible(false)
-                R.id.viewPagerFragment -> setToolbarVisible(false)
-                R.id.homeFragment -> setToolbarVisible(true)
-                R.id.formFragment -> setVisible(true)
-                R.id.taskFragment -> setToolbarVisible(true)
-            }
-        }
-    }
-
-    private fun setToolbarVisible(status: Boolean, title: String? = null) = with(binding) {
-        if (status) {
-            appBarLayout.visibility = View.VISIBLE
-            toolbar.title = title
-        } else {
-            binding.appBarLayout.visibility = View.GONE
-        }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.app_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

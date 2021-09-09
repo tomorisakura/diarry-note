@@ -9,11 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.grevi.diarry.R
 import com.grevi.diarry.databinding.FragmentHomeBinding
-import com.grevi.diarry.ui.viewmodel.DiaryViewModel
+import com.grevi.diarry.ui.base.BaseFragment
 import com.grevi.diarry.ui.home.adapter.DiaryAdapter
+import com.grevi.diarry.ui.viewmodel.DiaryViewModel
+import com.grevi.diarry.utils.snackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,28 +23,21 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    private lateinit var binding : FragmentHomeBinding
-    private lateinit var navController: NavController
     private val diaryViewModel : DiaryViewModel by viewModels()
     private val diaryAdapter : DiaryAdapter by lazy { DiaryAdapter() }
     private val job : Job by lazy { Job() }
 
-    private val TAG = HomeFragment::class.java.simpleName
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater)
-        return binding.root
+    override fun viewBindingInflater(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(layoutInflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
         setHasOptionsMenu(true)
         initView()
     }
@@ -56,42 +50,48 @@ class HomeFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.task_icon -> HomeFragmentDirections.actionHomeFragmentToTaskFragment().apply {
-                navController.navigate(this)
+            R.id.task_icon -> HomeFragmentDirections.actionHomeFragmentToTaskFragment().also {
+                getNavController().navigate(it)
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun initView() {
+    private fun initView() = with(getViewBinding()) {
         lifecycleScope.launchWhenCreated {
             diaryViewModel.allDiary.collect { state ->
                 when(state) {
                     is DiaryViewModel.State.Success -> {
-                        with(binding) {
-                            rvListDiary.setHasFixedSize(true)
-                            rvListDiary.layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-                            rvListDiary.adapter = diaryAdapter
-                            diaryAdapter.addItem(state.data)
-                            diaryAdapter.onItemClicked = { diary ->
-                                HomeFragmentDirections.actionHomeFragmentToFormFragment(false, diary).apply {
-                                    navController.navigate(this)
-                                }
+                        rvListDiary.apply {
+                            setHasFixedSize(true)
+                            layoutManager = GridLayoutManager(
+                                requireContext(),
+                                2,
+                                GridLayoutManager.VERTICAL,
+                                false)
+                            adapter = diaryAdapter
+                        }
+                        diaryAdapter.addItem(state.data)
+                        diaryAdapter.onItemClicked = { diary ->
+                            HomeFragmentDirections
+                                .actionHomeFragmentToFormFragment(false, diary).apply {
+                                getNavController().navigate(this)
                             }
                         }
 
-                        binding.btnAdd.setOnClickListener {
-                            HomeFragmentDirections.actionHomeFragmentToFormFragment(true, null).apply {
-                                navController.navigate(this)
+                        btnAdd.setOnClickListener {
+                            HomeFragmentDirections
+                                .actionHomeFragmentToFormFragment(true, null).apply {
+                                getNavController().navigate(this)
                             }
                         }
                     }
 
                     is DiaryViewModel.State.Loading -> {
-                        snackBar(state.msg).show()
+                        snackBar(root, state.msg)
                     }
-                    is DiaryViewModel.State.Error -> snackBar(state.exception.toString()).show()
-                    else -> Log.v(TAG, "")
+                    is DiaryViewModel.State.Error -> snackBar(root, state.exception.toString())
+                    else -> Unit
                 }
             }
         }
@@ -103,7 +103,7 @@ class HomeFragment : Fragment() {
             diaryViewModel.allDiary.collect { state ->
                 when(state) {
                     is DiaryViewModel.State.Success -> {
-                        with(binding) {
+                        with(getViewBinding()) {
                             if (state.data.isNullOrEmpty()) {
                                 emptyItemGroup.visibility = View.VISIBLE
                                 itemGroup.visibility = View.GONE
@@ -116,12 +116,15 @@ class HomeFragment : Fragment() {
                     }
 
                     is DiaryViewModel.State.Loading -> {
-                        binding.emptyItemGroup.visibility = View.GONE
-                        binding.itemGroup.visibility = View.GONE
+                        getViewBinding().apply {
+                            emptyItemGroup.visibility = View.GONE
+                            itemGroup.visibility = View.GONE
+                        }
                     }
 
-                    is DiaryViewModel.State.Error -> Log.e(TAG, state.exception.toString())
-                    else -> Log.d(TAG, "")
+                    is DiaryViewModel.State.Error ->
+                        snackBar(getViewBinding().root, state.exception.toString())
+                    else -> Unit
                 }
             }
         }
@@ -131,6 +134,4 @@ class HomeFragment : Fragment() {
         job.cancel()
         super.onStop()
     }
-
-    private fun snackBar(msg : String) : Snackbar = Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT)
 }
