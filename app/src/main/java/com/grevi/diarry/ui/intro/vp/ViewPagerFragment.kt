@@ -6,13 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.grevi.diarry.utils.SharedUtils
 import com.grevi.diarry.databinding.FragmentViewPagerBinding
-import com.grevi.diarry.ui.home.HomeActivity
 import com.grevi.diarry.ui.intro.IntroOneFragment
 import com.grevi.diarry.ui.intro.IntroThreeFragment
 import com.grevi.diarry.ui.intro.IntroTwoFragment
+import com.grevi.diarry.ui.splash.SplashFragmentDirections
 
 class ViewPagerFragment : Fragment() {
 
@@ -20,6 +22,7 @@ class ViewPagerFragment : Fragment() {
     private lateinit var vpAdapter: ViewPagerAdapter
     private val fragments : List<Fragment> = listOf(IntroOneFragment(), IntroTwoFragment(), IntroThreeFragment())
     private lateinit var sharedUtils: SharedUtils
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +37,7 @@ class ViewPagerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         vpAdapter = ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
         sharedUtils = SharedUtils(requireContext())
+        navController = Navigation.findNavController(view)
         with(binding) {
             introVp.adapter = vpAdapter
             indicator.setViewPager2(introVp)
@@ -45,9 +49,8 @@ class ViewPagerFragment : Fragment() {
                             button.text = "Ok, Saya Mengerti"
                             button.setOnClickListener {
                                 sharedUtils.setStartedKey()
-                                Intent(activity, HomeActivity::class.java).apply {
-                                    startActivity(this)
-                                    activity?.finish()
+                                ViewPagerFragmentDirections.actionViewPagerFragmentToHomeFragment().also {
+                                    navController.navigate(it)
                                 }
                             }
                         }
