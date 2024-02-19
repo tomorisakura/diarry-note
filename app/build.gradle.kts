@@ -8,22 +8,22 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
-    buildToolsVersion("30.0.3")
+    namespace = "com.grevi.diarry"
+    compileSdk = 33
+    buildToolsVersion = "33.0.1"
 
     buildFeatures {
         viewBinding = true
-        dataBinding = true
     }
 
     defaultConfig {
-        applicationId("com.grevi.diarry")
-        minSdkVersion(26)
-        targetSdkVersion(30)
-        versionCode(1)
-        versionName("1.0")
+        applicationId = "com.grevi.diarry"
+        minSdk = 27
+        targetSdk = 33
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {

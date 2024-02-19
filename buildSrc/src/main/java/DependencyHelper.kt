@@ -19,8 +19,6 @@ private fun DependencyHandler.androidTest(depName: String) {
 fun DependencyHandler.hilt() {
     implementation(AppDependencies.dagger_hilt)
     kapt(AppDependencies.dagger_hilt_android_compiler)
-    implementation(AppDependencies.dagger_hilt_viewmodel)
-    kapt(AppDependencies.dagger_hilt_compiler)
 }
 
 fun DependencyHandler.room() {
@@ -38,6 +36,7 @@ fun DependencyHandler.layout() {
 fun DependencyHandler.core() {
     implementation(AppDependencies.kotlin_version)
     implementation(AppDependencies.appcompat)
+    implementation(AppDependencies.appcompatResource)
     implementation(AppDependencies.kotlin_core_ktx)
     implementation(AppDependencies.legacy_support)
     implementation(AppDependencies.permission_x)

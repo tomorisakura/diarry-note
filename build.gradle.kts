@@ -1,10 +1,7 @@
-import java.net.URI
-
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath(ProjectDependencies.gradle)
@@ -20,13 +17,11 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
-        maven {
-            url = URI("https://jitpack.io")
-        }
+        mavenCentral()
+        maven { setUrl("https://jitpack.io") }
     }
 }
 
-tasks.register("clean", Delete::class) {
+tasks.register("clean") {
     delete(rootProject.buildDir)
 }

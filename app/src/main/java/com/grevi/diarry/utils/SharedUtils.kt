@@ -18,6 +18,5 @@ class SharedUtils(context: Context) {
             }
         }
     }
-
     internal fun getStartedKey() : Boolean = appContext.getSharedPreferences(STARTED_KEY, Context.MODE_PRIVATE).getBoolean(STARTED_KEY, false)
 }
