@@ -9,8 +9,8 @@ plugins {
 
 android {
     namespace = "com.grevi.diarry"
-    compileSdk = 33
-    buildToolsVersion = "33.0.1"
+    compileSdk = 34
+    buildToolsVersion = "34.0.0"
 
     buildFeatures {
         viewBinding = true
@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId = "com.grevi.diarry"
         minSdk = 27
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -44,13 +44,15 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":core-ui")))
+    implementation(project(mapOf("path" to ":core-common")))
+    implementation(project(mapOf("path" to ":core-navigation")))
+    implementation(project(mapOf("path" to ":feature-splash")))
     core()
     layout()
     fragmentKtx()
     navigation()
-    viewpager()
     unitTest()
     hilt()
-    room()
     coroutine()
 }

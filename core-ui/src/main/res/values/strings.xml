@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Diarry</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="intro_one_text">Diary merupakan catatan kecil yang disimpan oleh mu ..</string>
+    <string name="intro_two_text">Tuliskan catatan impianmu yang akan kamu capai.</string>
+    <string name="intro_three_text">Diary tersimpan untuk kamu ...</string>
+    <string name="title_hint_text">Judul</string>
+    <string name="content_hint_text">Tulis cerita kamu..</string>
+    <string name="home_text">Diarry</string>
+    <string name="form_text">Tulis Sesuatu</string>
+    <string name="task_task">Tugas Hari Ini</string>
+    <string name="accept_intro_text">Ok, Saya Mengerti</string>
+    <string name="next_text">Selanjutnya</string>
+    <string name="loading_text">Memuat Data...</string>
+    <string name="permission_deny">Permission ditolak</string>
+    <string name="delete_diary_question">Hapus Diary ?</string>
+    <string name="make_sure_delete_diary_question">Apakah kamu yakin ingin menghapus diary ini ?</string>
+    <string name="cancel_text">Batal</string>
+    <string name="delete_text">Hapus</string>
+    <string name="title_feature_intro">feature-intro</string>
+</resources>

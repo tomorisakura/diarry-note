@@ -4,6 +4,7 @@ object AppDependencies {
     const val kotlin_core_ktx = "androidx.core:core-ktx:${Versions.ktx}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     const val appcompatResource = "androidx.appcompat:appcompat-resources:${Versions.appcompat}"
+    const val androidActivityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
     const val material_guideline = "com.google.android.material:material:${Versions.material}"
     const val junit = "junit:junit:${Versions.junit}"
     const val junit_extension = "androidx.test.ext:junit:${Versions.junit_ext}"
@@ -22,4 +23,5 @@ object AppDependencies {
     const val viewpager_indicator = "com.tbuonomo:dotsindicator:${Versions.viewpager_indicator}"
     const val awesome_dialog = "com.github.chnouman:AwesomeDialog:${Versions.awesome_dialog}"
     const val permission_x = "com.guolindev.permissionx:permissionx:${Versions.permission_x}"
+    const val timberLogger = "com.jakewharton.timber:timber:${Versions.timber}"
 }

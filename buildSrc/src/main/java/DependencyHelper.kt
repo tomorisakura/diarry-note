@@ -28,6 +28,7 @@ fun DependencyHandler.room() {
 }
 
 fun DependencyHandler.layout() {
+    implementation(AppDependencies.androidActivityKtx)
     implementation(AppDependencies.constraint_layout)
     implementation(AppDependencies.material_guideline)
     implementation(AppDependencies.awesome_dialog)
@@ -40,6 +41,7 @@ fun DependencyHandler.core() {
     implementation(AppDependencies.kotlin_core_ktx)
     implementation(AppDependencies.legacy_support)
     implementation(AppDependencies.permission_x)
+    implementation(AppDependencies.timberLogger)
 }
 
 fun DependencyHandler.navigation() {

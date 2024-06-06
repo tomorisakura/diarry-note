@@ -7,11 +7,12 @@ object Versions {
     const val ktx = "1.9.0"
     const val material = "1.9.0"
     const val appcompat = "1.6.1"
+    const val activityKtx = "1.8.2"
     const val constraint_layout = "2.1.4"
     const val legacy_support = "1.0.0"
     const val navigation_fragment_ktx = "2.3.5"
     const val navigation_ui_ktx = "2.3.5"
-    const val fragment_ktx= "1.3.6"
+    const val fragment_ktx= "1.5.2"
 
     const val viewpager2 = "1.0.0"
     const val viewpager_indicator = "5.0"
@@ -24,6 +25,7 @@ object Versions {
 
     const val awesome_dialog = "1.0.5"
     const val permission_x = "1.7.1"
+    const val timber = "5.0.1"
 
     const val junit_ext = "1.1.3"
     const val junit = "4.13.2"
