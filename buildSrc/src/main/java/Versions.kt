@@ -1,8 +1,9 @@
 object Versions {
-    const val gradle = "8.1.3"
-    const val kotlin_version = "1.9.10"
+    const val gradle = "8.13.0"
+    const val kotlin_version = "2.0.21"
+    const val kotlinGradlePlugin = "2.0.21"
     const val nav_version = "2.5.0"
-    const val hilt_version = "2.50"
+    const val hilt_version = "2.57.2"
 
     const val ktx = "1.9.0"
     const val material = "1.9.0"
@@ -17,10 +18,10 @@ object Versions {
     const val viewpager2 = "1.0.0"
     const val viewpager_indicator = "5.0"
 
-    const val dagger_hilt = "2.50"
-    const val dagger_hilt_android_compiler = "2.50"
+    const val dagger_hilt = "2.57.2"
+    const val dagger_hilt_android_compiler = "2.57.2"
 
-    const val room_version = "2.4.2"
+    const val room_version = "2.8.0"
     const val coroutine_android = "1.5.0"
 
     const val awesome_dialog = "1.0.5"

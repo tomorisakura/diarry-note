@@ -1,7 +1,9 @@
 package com.ekik.feature_splash.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.ekik.core_ui.base.BaseFragment
 import com.ekik.feature_splash.R
@@ -14,11 +16,15 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(R.layout.fragment_spl
 
     private val viewModel by viewModels<SplashViewModel>()
 
-    private val binding by viewBinding(FragmentSplashBinding::bind)
+    override fun initBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentSplashBinding {
+        return FragmentSplashBinding.inflate(inflater, container, false)
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        isHasOptionMenu = false
+    override fun subscribeUi() {
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

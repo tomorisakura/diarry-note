@@ -21,7 +21,7 @@ object Database {
     @Singleton
     fun provideDiaryDatabase(@ApplicationContext context : Context) : DiaryDatabase {
         return Room.databaseBuilder(context, DiaryDatabase::class.java, DB_NAME)
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration(false)
             .build()
     }
 

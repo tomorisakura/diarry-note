@@ -16,7 +16,7 @@ abstract class BaseActivity<T: ViewBinding>: AppCompatActivity() {
 
     abstract var navHostContainerId: Int
 
-    protected fun loadNavController(@IdRes navHostFragmentId: Int) =
+    private fun loadNavController(@IdRes navHostFragmentId: Int) =
         (supportFragmentManager.findFragmentById(navHostFragmentId) as NavHostFragment).navController
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

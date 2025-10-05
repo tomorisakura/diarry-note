@@ -1,3 +1,7 @@
+plugins {
+    id("com.google.devtools.ksp") version "2.0.21-1.0.27" apply false
+}
+
 buildscript {
     repositories {
         google()
@@ -8,7 +12,7 @@ buildscript {
         classpath(ProjectDependencies.kotlin_gradle)
         classpath(ProjectDependencies.navigation_safe_args)
         classpath(ProjectDependencies.hilt)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10")
+        classpath(ProjectDependencies.kotlinGradlePlugin)
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

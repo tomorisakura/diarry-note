@@ -8,6 +8,10 @@ private fun DependencyHandler.kapt(depName: String) {
     add("kapt", depName)
 }
 
+private fun DependencyHandler.ksp(depName: String) {
+    add("ksp", depName)
+}
+
 private fun DependencyHandler.test(depName: String) {
     add("testImplementation", depName)
 }
@@ -18,12 +22,12 @@ private fun DependencyHandler.androidTest(depName: String) {
 
 fun DependencyHandler.hilt() {
     implementation(AppDependencies.dagger_hilt)
-    kapt(AppDependencies.dagger_hilt_android_compiler)
+    ksp(AppDependencies.dagger_hilt_android_compiler)
 }
 
 fun DependencyHandler.room() {
     implementation(AppDependencies.room_runtime)
-    kapt(AppDependencies.room_compiler)
+    ksp(AppDependencies.room_compiler)
     implementation(AppDependencies.room_ktx)
 }
 
